@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 export default function RedLight() {
     const [state, send] = useMachine(RedLightMachine);
+     const currentLightColor = state.matches("on.red") ? "bg-red-500" : state.matches("on.green") ? "bg-green-500" : state.matches("on.orange") ? "bg-orange-500" : "bg-gray-500";
     return (<>
     <div className="mt-10">
 
@@ -14,10 +15,7 @@ export default function RedLight() {
 
     </div>
     <div className="mt-20">
-        <div className={classNames("rounded-full w-20 h-20 mx-auto",
-        state.matches("on.red") ? "bg-red-500" : "bg-gray-500",
-        state.matches("on.green") ? "bg-green-500" : "bg-gray-500",
-        state.matches("on.orange") ? "bg-yellow-500" : "bg-gray-500"
+        <div className={classNames("rounded-full w-20 h-20 mx-auto",currentLightColor
         )}></div>
     </div>
     </>);
